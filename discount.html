@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate discounts easily with our Discount Calculator. Find the final price after discount in seconds.">
+    <meta name="keywords" content="Discount Calculator, Price Discount, Sale Price, Savings Calculator">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Discount Calculator - Multi-Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #007bff;
+        }
+        @media (max-width: 600px) {
+            .container, .blog {
+                max-width: 90%;
+                padding: 15px;
+            }
+            input, button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Discount Calculator</h2>
+        <p>Find out the final price after discount.</p>
+        <input type="number" id="originalPrice" placeholder="Enter Original Price">
+        <input type="number" id="discountPercentage" placeholder="Enter Discount %">
+        <button onclick="calculateDiscount()">Calculate</button>
+        <p class="result" id="discountResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>What is a Discount Calculator?</h2>
+        <p>A discount calculator helps you determine the final price of a product after applying a discount percentage.</p>
+        <h3>How Does it Work?</h3>
+        <p>Enter the original price and discount percentage, and the calculator will show you the new price after discount.</p>
+        <h3>Why Use a Discount Calculator?</h3>
+        <ul>
+            <li>Quickly find out how much you save on a product.</li>
+            <li>Useful for shopping, sales, and budgeting.</li>
+            <li>Accurate price calculations for better financial decisions.</li>
+        </ul>
+    </div>
+
+    <script>
+        function calculateDiscount() {
+            let originalPrice = parseFloat(document.getElementById("originalPrice").value);
+            let discountPercentage = parseFloat(document.getElementById("discountPercentage").value);
+            
+            if (!originalPrice || !discountPercentage || originalPrice <= 0 || discountPercentage < 0) {
+                document.getElementById("discountResult").innerText = "Please enter valid values.";
+                return;
+            }
+            
+            let discountAmount = (originalPrice * discountPercentage) / 100;
+            let finalPrice = originalPrice - discountAmount;
+            
+            document.getElementById("discountResult").innerText = `Final Price: ₹${finalPrice.toFixed(2)} (You Save: ₹${discountAmount.toFixed(2)})`;
+        }
+    </script>
+</body>
+</html>
