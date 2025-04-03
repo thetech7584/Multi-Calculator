@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Time Zone Converter: Convert time between different time zones accurately.">
+    <meta name="keywords" content="Time Zone Converter, world clock, time conversion, time difference calculator">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Time Zone Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Time Zone Converter</h2>
+        <p>Convert time between different time zones</p>
+        <input type="datetime-local" id="datetime">
+        <select id="fromZone">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">New York (EST)</option>
+            <option value="Europe/London">London (GMT)</option>
+            <option value="Asia/Kolkata">India (IST)</option>
+            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <option value="Australia/Sydney">Sydney (AEST)</option>
+            <option value="America/Los_Angeles">Los Angeles (PST)</option>
+            <option value="Europe/Paris">Paris (CET)</option>
+            <option value="Asia/Dubai">Dubai (GST)</option>
+            <option value="Asia/Shanghai">Shanghai (CST)</option>
+            <option value="Africa/Johannesburg">Johannesburg (SAST)</option>
+            <option value="Pacific/Auckland">Auckland (NZST)</option>
+            <option value="America/Sao_Paulo">São Paulo (BRT)</option>
+            <option value="Asia/Seoul">Seoul (KST)</option>
+            <option value="America/Mexico_City">Mexico City (CST)</option>
+            <option value="Europe/Berlin">Berlin (CET)</option>
+            <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+            <option value="Asia/Bangkok">Bangkok (ICT)</option>
+            <option value="Asia/Singapore">Singapore (SGT)</option>
+            <option value="Europe/Moscow">Moscow (MSK)</option>
+            <option value="Asia/Jakarta">Jakarta (WIB)</option>
+            <option value="America/Chicago">Chicago (CST)</option>
+            <option value="America/Toronto">Toronto (EST)</option>
+            <option value="Asia/Kathmandu">Kathmandu (NPT)</option>
+            <option value="Asia/Kuala_Lumpur">Kuala Lumpur (MYT)</option>
+            <option value="Asia/Manila">Manila (PHT)</option>
+            <option value="Asia/Yangon">Yangon (MMT)</option>
+            <option value="Europe/Madrid">Madrid (CET)</option>
+            <option value="Europe/Rome">Rome (CET)</option>
+            <option value="Asia/Tehran">Tehran (IRST)</option>
+            <option value="Africa/Cairo">Cairo (EET)</option>
+            <option value="Asia/Colombo">Colombo (IST)</option>
+            <option value="Australia/Perth">Perth (AWST)</option>
+            <option value="America/Vancouver">Vancouver (PST)</option>
+            <option value="America/Denver">Denver (MST)</option>
+            <option value="America/Argentina/Buenos_Aires">Buenos Aires (ART)</option>
+            <option value="Europe/Amsterdam">Amsterdam (CET)</option>
+            <option value="Europe/Brussels">Brussels (CET)</option>
+            <option value="Africa/Nairobi">Nairobi (EAT)</option>
+            <option value="Asia/Riyadh">Riyadh (AST)</option>
+            <option value="Asia/Kuwait">Kuwait (AST)</option>
+            <option value="Europe/Istanbul">Istanbul (TRT)</option>
+        </select>
+        <select id="toZone">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">New York (EST)</option>
+            <option value="Europe/London">London (GMT)</option>
+            <option value="Asia/Kolkata">India (IST)</option>
+            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <option value="Australia/Sydney">Sydney (AEST)</option>
+            <option value="America/Los_Angeles">Los Angeles (PST)</option>
+            <option value="Europe/Paris">Paris (CET)</option>
+            <option value="Asia/Dubai">Dubai (GST)</option>
+            <option value="Asia/Shanghai">Shanghai (CST)</option>
+            <option value="Africa/Johannesburg">Johannesburg (SAST)</option>
+            <option value="Pacific/Auckland">Auckland (NZST)</option>
+            <option value="America/Sao_Paulo">São Paulo (BRT)</option>
+            <option value="Asia/Seoul">Seoul (KST)</option>
+            <option value="America/Mexico_City">Mexico City (CST)</option>
+            <option value="Europe/Berlin">Berlin (CET)</option>
+            <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+            <option value="Asia/Bangkok">Bangkok (ICT)</option>
+            <option value="Asia/Singapore">Singapore (SGT)</option>
+            <option value="Europe/Moscow">Moscow (MSK)</option>
+        </select>
+        <button onclick="convertTime()">Convert</button>
+        <p class="result" id="convertedTime"></p>
+    </div>
+</body>
+  </html>
