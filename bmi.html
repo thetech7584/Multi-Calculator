@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your Body Mass Index (BMI) easily with our free online BMI calculator. Learn about BMI categories, health risks, and tips to maintain a healthy weight.">
+    <meta name="keywords" content="BMI Calculator, Body Mass Index, Health Calculator, Weight Calculator, Healthy BMI, Fitness, Health Tips">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>BMI Calculator - Multi-Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <p>Enter your height and weight to calculate BMI.</p>
+        <input type="number" id="weight" placeholder="Enter weight (kg)">
+        <input type="number" id="height" placeholder="Enter height (m)">
+        <button onclick="calculateBMI()">Calculate</button>
+        <p class="result" id="bmiResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>What is BMI (Body Mass Index)?</h2>
+        <p>Body Mass Index (BMI) is a measure of body fat based on height and weight. It helps assess whether a person is underweight, normal weight, overweight, or obese.</p>
+        <h3>BMI Categories:</h3>
+        <ul>
+            <li>Underweight: BMI less than 18.5</li>
+            <li>Normal weight: BMI between 18.5 – 24.9</li>
+            <li>Overweight: BMI between 25 – 29.9</li>
+            <li>Obese: BMI 30 or greater</li>
+        </ul>
+        <h3>Why is BMI Important?</h3>
+        <p>Maintaining a healthy BMI can reduce the risk of health problems such as heart disease, diabetes, and high blood pressure. A balanced diet and regular exercise are key to staying within a healthy BMI range.</p>
+        <h3>How to Improve Your BMI?</h3>
+        <p>Here are some tips to maintain a healthy BMI:</p>
+        <ul>
+            <li>Eat a balanced diet rich in fruits, vegetables, and proteins.</li>
+            <li>Exercise regularly, including cardio and strength training.</li>
+            <li>Stay hydrated and get enough sleep.</li>
+            <li>Avoid excessive junk food and sugary drinks.</li>
+        </ul>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            let weight = document.getElementById("weight").value;
+            let height = document.getElementById("height").value;
+            if (weight > 0 && height > 0) {
+                let bmi = (weight / (height * height)).toFixed(2);
+                let category = "";
+                if (bmi < 18.5) {
+                    category = "Underweight";
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    category = "Normal weight";
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    category = "Overweight";
+                } else {
+                    category = "Obese";
+                }
+                document.getElementById("bmiResult").innerText = `Your BMI is: ${bmi} (${category})`;
+            } else {
+                document.getElementById("bmiResult").innerText = "Please enter valid values.";
+            }
+        }
+    </script>
+</body>
+</html>
