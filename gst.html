@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate GST easily with our GST Calculator. Get accurate GST-inclusive and exclusive prices.">
+    <meta name="keywords" content="GST Calculator, Tax Calculator, Goods and Services Tax, GST India">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>GST Calculator - Multi-Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #28a745;
+        }
+        @media (max-width: 600px) {
+            .container, .blog {
+                max-width: 90%;
+                padding: 15px;
+            }
+            input, button, select {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>GST Calculator</h2>
+        <p>Calculate GST-inclusive and exclusive prices easily.</p>
+        <input type="number" id="amount" placeholder="Enter Amount">
+        <select id="gstRate">
+            <option value="5">5% GST</option>
+            <option value="12">12% GST</option>
+            <option value="18" selected>18% GST</option>
+            <option value="28">28% GST</option>
+        </select>
+        <button onclick="calculateGST()">Calculate</button>
+        <p class="result" id="gstResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>What is GST?</h2>
+        <p>GST (Goods and Services Tax) is an indirect tax levied on the supply of goods and services in many countries, including India.</p>
+        <h3>How to Calculate GST?</h3>
+        <p>The GST amount is calculated based on the percentage applied to the base price. The total amount can be either inclusive or exclusive of GST.</p>
+        <h3>Why Use a GST Calculator?</h3>
+        <ul>
+            <li>Quick and accurate GST calculations.</li>
+            <li>Determine GST-inclusive and exclusive prices easily.</li>
+            <li>Useful for businesses and individual taxpayers.</li>
+        </ul>
+    </div>
+
+    <script>
+        function calculateGST() {
+            let amount = parseFloat(document.getElementById("amount").value);
+            let gstRate = parseFloat(document.getElementById("gstRate").value);
+            
+            if (!amount || amount <= 0) {
+                document.getElementById("gstResult").innerText = "Please enter a valid amount.";
+                return;
+            }
+            
+            let gstAmount = (amount * gstRate) / 100;
+            let totalAmount = amount + gstAmount;
+            
+            document.getElementById("gstResult").innerText = `GST Amount: ₹${gstAmount.toFixed(2)}, Total Amount: ₹${totalAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
