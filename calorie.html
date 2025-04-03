@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daily Calorie Calculator - Find out how many calories you need per day.">
+    <meta name="keywords" content="Daily Calorie Calculator, BMR, TDEE, Health, Fitness, Weight Loss, Nutrition">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Daily Calorie Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            text-align: left;
+            background: white;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Daily Calorie Calculator</h2>
+        <p>Find out how many calories you need per day</p>
+        <input type="number" id="weight" placeholder="Enter Your Weight (kg)">
+        <input type="number" id="height" placeholder="Enter Your Height (cm)">
+        <input type="number" id="age" placeholder="Enter Your Age">
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <select id="activity">
+            <option value="1.2">Sedentary (little or no exercise)</option>
+            <option value="1.375">Lightly active (1-3 days per week)</option>
+            <option value="1.55">Moderately active (3-5 days per week)</option>
+            <option value="1.725">Very active (6-7 days per week)</option>
+            <option value="1.9">Super active (twice per day, heavy exercise)</option>
+        </select>
+        <button onclick="calculateCalories()">Calculate</button>
+        <p class="result" id="calorieResult"></p>
+    </div>
+
+    <div class="blog">
+        <h1>Daily Calorie Calculator - Why It’s Important</h1>
+        <p>Knowing how many calories you need daily helps you manage your weight, improve energy levels, and stay healthy.</p>
+        
+        <h2>How Are Daily Calories Calculated?</h2>
+        <p>The calculator uses the BMR (Basal Metabolic Rate) formula, which determines how many calories your body burns at rest, and then multiplies it by your activity level.</p>
+        
+        <h2>Why Should You Track Calories?</h2>
+        <ul>
+            <li>Helps with weight loss, gain, or maintenance</li>
+            <li>Ensures proper nutrition for better energy and health</li>
+            <li>Prevents overeating or undereating</li>
+        </ul>
+        
+        <h2>How to Use the Calculator?</h2>
+        <p>Enter your weight, height, age, gender, and activity level. The calculator will estimate your daily calorie needs.</p>
+    </div>
+    
+    <script>
+        function calculateCalories() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value);
+            let age = parseFloat(document.getElementById("age").value);
+            let gender = document.getElementById("gender").value;
+            let activity = parseFloat(document.getElementById("activity").value);
+            let bmr = 0;
+            
+            if (gender === "male") {
+                bmr = 88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age);
+            } else {
+                bmr = 447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age);
+            }
+            
+            let dailyCalories = bmr * activity;
+            document.getElementById("calorieResult").innerText = "Your daily calorie requirement: " + dailyCalories.toFixed(2) + " kcal";
+        }
+    </script>
+</body>
+</html>
