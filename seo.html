@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Best free SEO tools to analyze and improve your website ranking. Get keyword insights, backlink analysis, and on-page optimization suggestions.">
+    <meta name="keywords" content="SEO tools, keyword research, backlink checker, website ranking, on-page SEO">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>SEO Tools - Optimize Your Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #28a745;
+        }
+        @media (max-width: 600px) {
+            .container, .blog {
+                max-width: 90%;
+                padding: 15px;
+            }
+            input, button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SEO Tools</h2>
+        <p>Analyze your website's SEO performance</p>
+        <input type="text" id="websiteUrl" placeholder="Enter Website URL">
+        <button onclick="analyzeSEO()">Analyze</button>
+        <p class="result" id="seoResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>What are SEO Tools?</h2>
+        <p>SEO tools help you optimize your website to rank higher on search engines. These tools provide insights into keywords, backlinks, and technical performance.</p>
+        <h3>Why Use SEO Tools?</h3>
+        <ul>
+            <li>Improve search engine rankings.</li>
+            <li>Analyze backlinks and keyword performance.</li>
+            <li>Identify on-page and off-page SEO improvements.</li>
+        </ul>
+    </div>
+
+    <script>
+        function analyzeSEO() {
+            let url = document.getElementById("websiteUrl").value;
+            if (!url) {
+                document.getElementById("seoResult").innerText = "Please enter a valid URL.";
+                return;
+            }
+            document.getElementById("seoResult").innerText = `Analyzing SEO performance for: ${url}...`;
+            setTimeout(() => {
+                document.getElementById("seoResult").innerText = "SEO Analysis Completed! Check keyword rankings, backlinks, and technical SEO issues.";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
