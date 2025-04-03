@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your exact age in years, months, and days with our Age Calculator. Get accurate results instantly.">
+    <meta name="keywords" content="Age Calculator, Date of Birth Calculator, Birthday Calculator, How Old Am I">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Age Calculator - Multi-Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #007bff;
+        }
+        @media (max-width: 600px) {
+            .container, .blog {
+                max-width: 90%;
+                padding: 15px;
+            }
+            input, button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Age Calculator</h2>
+        <p>Enter your date of birth to calculate your exact age.</p>
+        <input type="date" id="dob">
+        <button onclick="calculateAge()">Calculate Age</button>
+        <p class="result" id="ageResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>What is an Age Calculator?</h2>
+        <p>An Age Calculator helps you determine your exact age in years, months, and days. It provides accurate results based on your date of birth.</p>
+        <h3>How to Calculate Age?</h3>
+        <p>The age is calculated by subtracting the birth date from the current date. The result gives the number of years, months, and days.</p>
+        <h3>Why Use an Age Calculator?</h3>
+        <ul>
+            <li>Quick and accurate age calculation.</li>
+            <li>Useful for official documentation.</li>
+            <li>Find out how many days until your next birthday.</li>
+        </ul>
+    </div>
+
+    <script>
+        function calculateAge() {
+            let dob = document.getElementById("dob").value;
+            if (dob) {
+                let birthDate = new Date(dob);
+                let today = new Date();
+                let ageYears = today.getFullYear() - birthDate.getFullYear();
+                let ageMonths = today.getMonth() - birthDate.getMonth();
+                let ageDays = today.getDate() - birthDate.getDate();
+                
+                if (ageDays < 0) {
+                    ageMonths--;
+                    ageDays += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+                }
+                if (ageMonths < 0) {
+                    ageYears--;
+                    ageMonths += 12;
+                }
+                
+                document.getElementById("ageResult").innerText = `You are ${ageYears} years, ${ageMonths} months, and ${ageDays} days old.`;
+            } else {
+                document.getElementById("ageResult").innerText = "Please enter a valid date of birth.";
+            }
+        }
+    </script>
+</body>
+</html>
