@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Interest Calculator: Calculate both Simple and Compound Interest accurately.">
+    <meta name="keywords" content="Interest Calculator, Simple Interest, Compound Interest, Financial Calculator">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Advanced Interest Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Advanced Interest Calculator</h2>
+        <p>Calculate both Simple and Compound Interest</p>
+        <input type="number" id="principal" placeholder="Enter Principal Amount">
+        <input type="number" id="rate" placeholder="Enter Annual Interest Rate (%)">
+        <input type="number" id="time" placeholder="Enter Time Period (Years)">
+        <select id="type">
+            <option value="simple">Simple Interest</option>
+            <option value="compound">Compound Interest</option>
+        </select>
+        <button onclick="calculateInterest()">Calculate</button>
+        <p class="result" id="interestResult"></p>
+    </div>
+    <script>
+        function calculateInterest() {
+            let principal = parseFloat(document.getElementById("principal").value);
+            let rate = parseFloat(document.getElementById("rate").value);
+            let time = parseFloat(document.getElementById("time").value);
+            let type = document.getElementById("type").value;
+            let result = 0;
+            
+            if (type === "simple") {
+                result = (principal * rate * time) / 100;
+            } else {
+                result = principal * Math.pow((1 + rate / 100), time) - principal;
+            }
+            
+            document.getElementById("interestResult").innerText = "Calculated Interest: " + result.toFixed(2);
+        }
+    </script>
+</body>
+</html>
