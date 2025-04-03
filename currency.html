@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Easily convert currency rates with our real-time currency converter tool.">
+    <meta name="keywords" content="Currency Converter, Forex Rates, Exchange Rates, Money Converter">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Currency Converter - Multi-Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #007bff;
+        }
+        @media (max-width: 600px) {
+            .container, .blog {
+                max-width: 90%;
+                padding: 15px;
+            }
+            input, button, select {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Currency Converter</h2>
+        <p>Convert currency rates in real-time.</p>
+        <input type="number" id="amount" placeholder="Enter Amount">
+        <select id="fromCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR" selected>INR</option>
+        </select>
+        <select id="toCurrency">
+            <option value="USD" selected>USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR">INR</option>
+        </select>
+        <button onclick="convertCurrency()">Convert</button>
+        <p class="result" id="conversionResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>What is a Currency Converter?</h2>
+        <p>A currency converter helps you calculate exchange rates between different currencies in real time.</p>
+        <h3>How Does it Work?</h3>
+        <p>By selecting a base currency and a target currency, you can get the exact exchange rate instantly.</p>
+        <h3>Why Use a Currency Converter?</h3>
+        <ul>
+            <li>Quick and accurate conversion of different currencies.</li>
+            <li>Essential for international travelers and businesses.</li>
+            <li>Real-time updates to reflect the latest exchange rates.</li>
+        </ul>
+    </div>
+
+    <script>
+        async function convertCurrency() {
+            let amount = parseFloat(document.getElementById("amount").value);
+            let fromCurrency = document.getElementById("fromCurrency").value;
+            let toCurrency = document.getElementById("toCurrency").value;
+            
+            if (!amount || amount <= 0) {
+                document.getElementById("conversionResult").innerText = "Please enter a valid amount.";
+                return;
+            }
+            
+            let response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+            let data = await response.json();
+            let exchangeRate = data.rates[toCurrency];
+            let convertedAmount = (amount * exchangeRate).toFixed(2);
+            
+            document.getElementById("conversionResult").innerText = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+        }
+    </script>
+</body>
+</html>
