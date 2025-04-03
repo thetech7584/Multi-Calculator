@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Income Tax Calculator: Calculate your income tax with deductions, exemptions, and accurate tax slabs.">
+    <meta name="keywords" content="Income Tax Calculator, advanced tax calculation, tax deductions, exemptions, tax slabs">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Advanced Income Tax Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #007bff;
+        }
+        @media (max-width: 600px) {
+            .container, .blog {
+                max-width: 90%;
+                padding: 15px;
+            }
+            input, select, button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Advanced Income Tax Calculator</h2>
+        <p>Calculate your tax with deductions & exemptions</p>
+        <input type="number" id="income" placeholder="Enter Annual Income">
+        <input type="number" id="deductions" placeholder="Enter Total Deductions">
+        <input type="number" id="exemptions" placeholder="Enter Exemptions">
+        <select id="taxSlab">
+            <option value="0.05">5% Tax Slab</option>
+            <option value="0.10">10% Tax Slab</option>
+            <option value="0.20">20% Tax Slab</option>
+            <option value="0.30">30% Tax Slab</option>
+        </select>
+        <button onclick="calculateTax()">Calculate</button>
+        <p class="result" id="taxResult"></p>
+    </div>
+
+    <div class="blog">
+        <h2>How to Use the Advanced Income Tax Calculator?</h2>
+        <p>Use this tool to accurately calculate your tax liability, including deductions and exemptions.</p>
+        <h3>Steps:</h3>
+        <ul>
+            <li>Enter your annual income.</li>
+            <li>Enter your eligible deductions (e.g., investments, insurance).</li>
+            <li>Enter applicable exemptions (e.g., HRA, medical allowance).</li>
+            <li>Select your tax slab.</li>
+            <li>Click "Calculate" to see your net taxable income and final tax amount.</li>
+        </ul>
+    </div>
+
+    <script>
+        function calculateTax() {
+            let income = parseFloat(document.getElementById("income").value) || 0;
+            let deductions = parseFloat(document.getElementById("deductions").value) || 0;
+            let exemptions = parseFloat(document.getElementById("exemptions").value) || 0;
+            let taxRate = parseFloat(document.getElementById("taxSlab").value);
+            
+            let taxableIncome = income - deductions - exemptions;
+            if (taxableIncome <= 0) {
+                document.getElementById("taxResult").innerText = "No taxable income.";
+                return;
+            }
+            let taxAmount = taxableIncome * taxRate;
+            document.getElementById("taxResult").innerText = `Your estimated tax: ₹${taxAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
