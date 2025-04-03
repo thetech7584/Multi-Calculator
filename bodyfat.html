@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Body Fat Calculator: Estimate your body fat percentage easily.">
+    <meta name="keywords" content="Body Fat Calculator, Fitness, Health, BMI, Fat Percentage, Weight Loss">
+    <meta name="author" content="Multi-Tools">
+    <link rel="stylesheet" href="styles.css">
+    <title>Body Fat Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .blog {
+            text-align: left;
+            background: white;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Body Fat Calculator</h2>
+        <p>Estimate your body fat percentage</p>
+        <input type="number" id="weight" placeholder="Enter Your Weight (kg)">
+        <input type="number" id="waist" placeholder="Enter Waist Circumference (cm)">
+        <input type="number" id="hip" placeholder="Enter Hip Circumference (cm) (optional)">
+        <input type="number" id="neck" placeholder="Enter Neck Circumference (cm)">
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <button onclick="calculateBodyFat()">Calculate</button>
+        <p class="result" id="bodyFatResult"></p>
+    </div>
+
+    <div class="blog">
+        <h1>Body Fat Calculator - Why It’s Important</h1>
+        <p>Maintaining a healthy body fat percentage is essential for overall fitness and well-being. A body fat calculator helps you track your progress and understand how diet and exercise affect your body composition.</p>
+        
+        <h2>Why Measure Body Fat?</h2>
+        <ul>
+            <li>Helps track weight loss and muscle gain</li>
+            <li>Determines risk for obesity-related diseases</li>
+            <li>Provides better insights than BMI alone</li>
+        </ul>
+        
+        <h2>How to Use a Body Fat Calculator?</h2>
+        <p>To estimate your body fat, enter your weight, waist, neck, and optionally hip measurements. The calculator uses these values to estimate fat percentage using a scientifically validated formula.</p>
+        
+        <h2>What is a Healthy Body Fat Percentage?</h2>
+        <ul>
+            <li><strong>Men:</strong> 6-24% (Athletes: 6-13%)</li>
+            <li><strong>Women:</strong> 16-30% (Athletes: 14-20%)</li>
+        </ul>
+        
+        <h2>Tips to Reduce Body Fat</h2>
+        <ul>
+            <li>Follow a balanced diet with protein, fiber, and healthy fats</li>
+            <li>Engage in regular strength training and cardio</li>
+            <li>Stay hydrated and maintain good sleep patterns</li>
+        </ul>
+    </div>
+    
+    <script>
+        function calculateBodyFat() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let waist = parseFloat(document.getElementById("waist").value);
+            let hip = parseFloat(document.getElementById("hip").value);
+            let neck = parseFloat(document.getElementById("neck").value);
+            let gender = document.getElementById("gender").value;
+            let bodyFat = 0;
+            
+            if (gender === "male") {
+                bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+            } else {
+                bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
+            }
+            
+            document.getElementById("bodyFatResult").innerText = "Estimated Body Fat: " + bodyFat.toFixed(2) + "%";
+        }
+    </script>
+</body>
+</html>
